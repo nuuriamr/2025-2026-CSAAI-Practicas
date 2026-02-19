@@ -3,9 +3,6 @@ Mis prácticas de la asignatura Construcción de Servicios y Aplicaciones Audiov
 
 ## 📺 Listado de Prácticas
 
-* **Práctica 1: CV Interactivo (Estilo Televisivo)**
+* **Práctica 1: CV**
     * [Ver la web de la práctica](https://nuuriamr.github.io/2025-2026-CSAAI-Practicas/P1/)
     * [Código fuente de la P1](https://github.com/nuuriamr/2025-2026-CSAAI-Practicas/tree/main/P1)
-
----
-> *Nota: "Yo por mi código MATO". Proyecto inspirado en el estilo visual de las grandes galas de televisión.*
