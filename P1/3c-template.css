@@ -1,64 +1,131 @@
-/* https://www.w3schools.com/howto/howto_css_two_columns.asp */
-/* https://developer.mozilla.org/es/docs/Web/CSS/box-sizing */
-/* Así definimos el comportamiento de caja para todos los elementos */
-
+/* --- ESTILO GENERAL --- */
 body {
-    background-image: url('belen-estebanfondo2.jpg'); 
+    background-image: url('plato.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+    color: #4a148c;
+    margin: 0;
+    padding: 40px;
+    font-size:4.5rem; /* Aumentamos el tamaño base de la letra */
 }
 
-* {
-    box-sizing: border-box;
-  }
-  
-/* Crear columnas de ancho diferente que se colocan una a continuación de la otra */
-.columna {
-float: left;
-padding: 10px;
-min-height: 500px;
+.center {
+    text-align: center;
+    font-size: 4.5rem;
+    color: #e582b7;
+    text-shadow: 3px 3px white;
+    margin-bottom: 60px;
+    font-weight: 800;
 }
 
-.izquierda {
-width: 35%;
+/* --- BOTÓN "VOLVER" CON FOTO GIGANTE FUERA --- */
+.boton-contenedor {
+    position: relative;
+    background-color: rgba(233, 140, 236, 0.8); 
+    border: 2px solid white;
+    color: rgb(95, 49, 81);
+    padding: 20px 40px 20px 140px; /* Espacio para la foto gigante */
+    border-radius: 20px;
+    font-size: 3.5rem;        
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(139, 0, 133, 0.2);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 60px;
+    margin-left: 80px;
+    text-decoration: none;
 }
 
-.derecha {
-width: 65%;
+.solapar {
+    position: absolute;
+    left: -70px;              /* La foto "vuela" fuera del botón */
+    top: 50%;
+    transform: translateY(-50%); 
+    width: 180px;             /* TAMAÑO GIGANTE */
+    height: 180px;
+    z-index: 10;
 }
 
-/* Clear floats despues de las columnas para eliminar la superposición */
-.filla:after {
-content: "";
-display: table;
-clear: both;
-}
-
-#c1 {
-    background-color:#c498ba;
-}
-
-#c2 {
-    background-color:#d385b583;
-}
-
-/* estilos para imágenes https://www.w3schools.com/css/css3_images.asp */
-/* posicionamiento de imágenes https://www.w3schools.com/css/css_positioning.asp */
-
-img {
+.foto1, .foto2 {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
+    border-radius: 50%;       
+    border: 6px solid white;  /* Borde grueso de pegatina */
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
-.iresponsive {
-    padding: 0 6px;
-    float: left;
-    width: 50%;
-  }
+.foto2 { opacity: 0; }
 
-/* Responsive layout - cuando el ancho de pantalla es menor a 600px, muestra las columnas apiladas. */
-/* Así conseguimos que el contenido se vea bien en dispositvos móviles */
+.boton-contenedor:hover {
+    background-color: rgba(255, 142, 246, 1);
+    transform: scale(1.05);
+}
 
-@media screen and (max-width: 600px) {
+.boton-contenedor:hover .foto1 { opacity: 0; }
+.boton-contenedor:hover .foto2 { opacity: 1; }
+
+/* --- GRID DE PERSONAJES (Las Filas) --- */
+.fila {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.columna {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 40px;
+    padding: 35px;
+    text-align: center;
+    border: 4px solid #f06292;
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* 4 columnas en la primera fila */
+.fila .columna {
+    width: calc(25% - 20px);
+    min-width: 250px;
+}
+
+/* 3 columnas en la segunda fila */
+.fila-centro .columna {
+    width: calc(33% - 20px);
+    min-width: 300px;
+}
+
+.columna:hover {
+    transform: translateY(-10px);
+    background: white;
+}
+
+.iresponsive img {
+    border-radius: 15px;
+    border: 3px solid #8e24aa;
+    margin-bottom: 15px;
+}
+
+h2 {
+    color: #ad1457;
+    font-size: 1.8rem;
+}
+
+p {
+    font-size: 2.1rem;
+    line-height: 1.4;
+}
+@media screen and (max-width: 400px) {
     .columna {
       width: 100%;
     }
@@ -67,30 +134,22 @@ img {
         width: 100%;
     }
 }
-
-/* Más sobre diseño web responsive https://www.w3schools.com/css/css_rwd_intro.asp */
-.boton{
-    background-color: rgba(233, 140, 236, 0.6); /* parecido a tarjeta-mini */
-    border: 1px solid white;
-    color: white;
-    padding: 12px 20px;
-    margin-top: 10px;
-    width: 100%;              /* mismo ancho que la columna */
-    border-radius: 15px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(139, 0, 133, 0.2);
-    transition: all 0.3s ease;
+/* Ajuste universal para las fotos de las tarjetas de Belén */
+.card-belen img {
+    width: 100%;          /* Ocupa todo el ancho de la tarjeta */
+    height: auto;        /* Altura fija para que todas las tarjetas midan lo mismo */
+    aspect-ratio: 6/ 5;
+    display: block;
+    object-fit: cover;    /* Recorta la imagen automáticamente para que llene el espacio sin deformarse */
+    object-position: center top; /* Centra el recorte en la parte superior (las caras) */
+    border-radius: 15px;  /* Esquinas suavizadas */
+    border: 3px solid #f48fb1; /* El toque rosa de la casa */
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
 }
 
-/* Hover bonito */
-.boton:hover {
-    background-color: rgba(255, 142, 246, 0.8);
-    transform: translateY(-2px); /* efecto flotante */
-    box-shadow: 0 6px 12px rgba(139, 0, 133, 0.3);
-}
-
-/* Click */
-.boton:active {
-    transform: scale(0.98);
+/* Efecto al pasar el ratón solo sobre la imagen */
+.card-belen img:hover {
+    transform: scale(1.0); /* Un pequeño zoom de calidad */
+    border-color: #ad1457;  /* El rosa se vuelve más intenso */
 }
