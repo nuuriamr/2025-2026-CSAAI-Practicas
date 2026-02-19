@@ -45,7 +45,7 @@ clear: both;
 }
 
 #c1 {
-    width: 30%; 
+    /* width: 30%;  */
     background-color:#c498ba;
     border-radius: 20px;
     padding: 20px;
@@ -60,7 +60,7 @@ clear: both;
     border-radius: 15px;
 }
 #c2 {
-    width: 40%;    
+    /* width: 40%;     */
     background-color:#d385b583;
     border-radius: 20px;
     padding: 30px;
@@ -114,13 +114,13 @@ img:hover {
     background-color: rgba(233, 140, 236, 0.6); /* parecido a tarjeta-mini */
     border: 1px solid white;
     color: rgb(95, 49, 81);
-    padding: 12px 20px;
-    margin-top: 10px;
-    width: 100%;              /* mismo ancho que la columna */
-    border-radius: 15px;
-    font-size: 1.1rem;
+    padding: 18px 30px;
+    margin-top: 20px;
+    width: 40%;              /* mismo ancho que la columna */
+    border-radius: 20px;
+    font-size: 2.3rem;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(139, 0, 133, 0.2);
+    box-shadow: 4 4px 8px rgba(139, 0, 133, 0.2);
     transition: all 0.3s ease;
 }
 
@@ -136,7 +136,7 @@ img:hover {
     transform: scale(0.98);
 }
 .contacto-abajo {
-    width: 30%;
+    /* width: 30%; */
     margin-right: 10%;
     margin-top: 2%;
     float:  right;
