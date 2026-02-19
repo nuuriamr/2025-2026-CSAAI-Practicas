@@ -134,9 +134,9 @@ body {
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 400px) {
     .contenedor-proyectos {
-        grid-template-columns: 1fr; /* En móviles una sola columna */
+        grid-template-columns: 2fr; /* En móviles una sola columna */
         row-gap: 60px;
     }
     .proyecto-item {
