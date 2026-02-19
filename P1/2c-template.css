@@ -9,7 +9,9 @@ body {
     background-position: center;
     background-attachment: fixed;
     font-family: 'Poppins', sans-serif;
-    color: #4a2c40;
+    color: #20151c;
+    font-size: 24px;        /* tamaño base */
+    line-height: 1.6; 
 }
 
 * {
@@ -19,7 +21,9 @@ body {
 /* Crear columnas de ancho diferente que se colocan una a continuación de la otra */
 .columna {
 float: left;
-padding: 10px;
+width: 33.33%;
+padding: 20px;
+/* padding: 10px; */
 min-height: 500px;
 }
 
@@ -34,13 +38,14 @@ margin-left: 2%;
 }
 
 /* Clear floats despues de las columnas para eliminar la superposición */
-.filla:after {
+.fila:after {
 content: "";
 display: table;
 clear: both;
 }
 
 #c1 {
+    width: 30%; 
     background-color:#c498ba;
     border-radius: 20px;
     padding: 20px;
@@ -48,11 +53,14 @@ clear: both;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 #c1 img {
+    width: 100%;
+    height: auto;
     display: block;
     margin: 0 auto 20px auto;
     border-radius: 15px;
 }
 #c2 {
+    width: 40%;    
     background-color:#d385b583;
     border-radius: 20px;
     padding: 30px;
@@ -60,6 +68,8 @@ clear: both;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 #c2 img {
+    width: 100%;
+    height: auto;
     width: 70%;
     display: block;
     margin: 0 auto 20px auto;
@@ -89,7 +99,7 @@ img:hover {
 /* Responsive layout - cuando el ancho de pantalla es menor a 600px, muestra las columnas apiladas. */
 /* Así conseguimos que el contenido se vea bien en dispositvos móviles */
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
     .columna {
       width: 100%;
     }
@@ -103,7 +113,7 @@ img:hover {
 .boton{
     background-color: rgba(233, 140, 236, 0.6); /* parecido a tarjeta-mini */
     border: 1px solid white;
-    color: white;
+    color: rgb(95, 49, 81);
     padding: 12px 20px;
     margin-top: 10px;
     width: 100%;              /* mismo ancho que la columna */
@@ -126,17 +136,34 @@ img:hover {
     transform: scale(0.98);
 }
 .contacto-abajo {
-    margin-top: 40px;
-    padding: 25px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    width: 30%;
+    margin-right: 10%;
+    margin-top: 2%;
+    float:  right;
+    padding: 10px;
+    width: 80%;
+    height: 20;
+    margin: 1000 px auto;          /* lo centra y lo separa */
+    padding: 35px;
+    background: rgba(255, 255, 255, 0.61);          /* fondo sólido */
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    text-align: center; 
+    border: 3px solid #d98cd9;  /* borde que lo separa */
 }
 
 .contacto-abajo h2 {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    color: #b14eb1;
 }
+
+.contacto-abajo p {
+    margin: 20px 0;
+}
+
+/* .contacto-abajo h2 {
+    margin-bottom: 15px;
+} */
 
 h2 {
     text-align: center;
