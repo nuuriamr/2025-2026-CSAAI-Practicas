@@ -10,7 +10,7 @@ body {
     background-attachment: fixed;
     font-family: 'Poppins', sans-serif;
     color: #20151c;
-    font-size: 24px;        /* tamaño base */
+    font-size: 25px;        /* tamaño base */
     line-height: 1.6; 
 }
 
@@ -28,12 +28,17 @@ min-height: 500px;
 }
 
 .izquierda {
-width: 25%;
+width: 28%;
+display: flex;
+flex-direction: column; /* Para que la imagen y el texto sigan uno arriba del otro */
+justify-content: center; /* Centrado vertical */
+align-items: center;     /* Centrado horizontal */
+    /* Alineación de las letras */
 
 }
 
 .derecha {
-width: 73%;
+width: 70%;
 margin-left: 2%;
 }
 
@@ -46,6 +51,7 @@ clear: both;
 
 #c1 {
     /* width: 30%;  */
+    text-align: center;
     background-color:#c498ba;
     border-radius: 20px;
     padding: 20px;
@@ -55,15 +61,17 @@ clear: both;
 #c1 img {
     width: 100%;
     height: auto;
+    width: 100%;
     display: block;
     margin: 0 auto 20px auto;
     border-radius: 15px;
+    border: 3px solid #f1c40f; 
 }
 #c2 {
     /* width: 40%;     */
     background-color:#d385b583;
     border-radius: 20px;
-    padding: 30px;
+    padding: 10px;
     backdrop-filter: blur(6px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
@@ -74,6 +82,8 @@ clear: both;
     display: block;
     margin: 0 auto 20px auto;
     border-radius: 15px;
+    border: 3px solid #f1c40f; /
+
 }
 
 /* estilos para imágenes https://www.w3schools.com/css/css3_images.asp */
@@ -91,15 +101,14 @@ img:hover {
 }
 
 .iresponsive {
-    padding: 0 6px;
+    padding: 20 10px;
     float: left;
-    width: 50%;
+    width: 80%;
   }
-
 /* Responsive layout - cuando el ancho de pantalla es menor a 600px, muestra las columnas apiladas. */
 /* Así conseguimos que el contenido se vea bien en dispositvos móviles */
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
     .columna {
       width: 100%;
     }
@@ -175,3 +184,4 @@ h2 {
 h3, h4 {
     color: #8b0085;
 }
+
