@@ -3,13 +3,8 @@
 /* Así definimos el comportamiento de caja para todos los elementos */
 
 body {
-    background-image: url('ESTEBAN_FONDO.png'); 
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-image: url('belen-estebanfondo2.jpg'); 
     background-position: center;
-    background-attachment: fixed;
-    font-family: 'Poppins', sans-serif;
-    color: #4a2c40;
 }
 
 * {
@@ -24,11 +19,11 @@ min-height: 500px;
 }
 
 .izquierda {
-width: 25%;
+width: 35%;
 }
 
 .derecha {
-width: 75%;
+width: 65%;
 }
 
 /* Clear floats despues de las columnas para eliminar la superposición */
@@ -40,18 +35,10 @@ clear: both;
 
 #c1 {
     background-color:#c498ba;
-    border-radius: 20px;
-    padding: 20px;
-    backdrop-filter: blur(6px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 #c2 {
     background-color:#d385b583;
-    border-radius: 20px;
-    padding: 20px;
-    backdrop-filter: blur(6px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 /* estilos para imágenes https://www.w3schools.com/css/css3_images.asp */
@@ -60,12 +47,6 @@ clear: both;
 img {
     width: 100%;
     height: auto;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-img:hover {
-    transform: scale(1.03);
-    transition: 0.3s ease;
 }
 
 .iresponsive {
@@ -112,14 +93,4 @@ img:hover {
 /* Click */
 .boton:active {
     transform: scale(0.98);
-}
-h2 {
-    text-align: center;
-    font-weight: 600;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-}
-
-h3, h4 {
-    color: #8b0085;
 }
