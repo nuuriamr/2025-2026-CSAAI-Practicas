@@ -25,10 +25,12 @@ min-height: 500px;
 
 .izquierda {
 width: 25%;
+
 }
 
 .derecha {
-width: 75%;
+width: 73%;
+margin-left: 2%;
 }
 
 /* Clear floats despues de las columnas para eliminar la superposición */
@@ -45,24 +47,34 @@ clear: both;
     backdrop-filter: blur(6px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
-
+#c1 img {
+    display: block;
+    margin: 0 auto 20px auto;
+    border-radius: 15px;
+}
 #c2 {
     background-color:#d385b583;
     border-radius: 20px;
-    padding: 20px;
+    padding: 30px;
     backdrop-filter: blur(6px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+#c2 img {
+    width: 70%;
+    display: block;
+    margin: 0 auto 20px auto;
+    border-radius: 15px;
 }
 
 /* estilos para imágenes https://www.w3schools.com/css/css3_images.asp */
 /* posicionamiento de imágenes https://www.w3schools.com/css/css_positioning.asp */
 
-img {
+/* #img {
     width: 100%;
     height: auto;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
+} */
 img:hover {
     transform: scale(1.03);
     transition: 0.3s ease;
@@ -113,6 +125,19 @@ img:hover {
 .boton:active {
     transform: scale(0.98);
 }
+.contacto-abajo {
+    margin-top: 40px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.contacto-abajo h2 {
+    margin-bottom: 15px;
+}
+
 h2 {
     text-align: center;
     font-weight: 600;
