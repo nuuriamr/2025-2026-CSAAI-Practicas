@@ -108,7 +108,7 @@ img:hover {
 /* Responsive layout - cuando el ancho de pantalla es menor a 600px, muestra las columnas apiladas. */
 /* Así conseguimos que el contenido se vea bien en dispositvos móviles */
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 400px) {
     .columna {
       width: 100%;
     }
