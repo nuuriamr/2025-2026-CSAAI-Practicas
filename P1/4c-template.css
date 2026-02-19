@@ -8,7 +8,7 @@ body {
     background-attachment: fixed;
     font-family: 'Poppins', sans-serif;
     color: #20151c;
-    font-size: 38px;
+    font-size: 18px;
     line-height: 1.8; 
 }
 
@@ -115,14 +115,14 @@ h3, h4 { color: #8b0085; }
     background-color: rgba(233, 140, 236, 0.6); 
     border: 1px solid white;
     color: rgb(95, 49, 81);
-    padding: 18px 30px 18px 110px; 
+    padding: 10px 20px 10px 80px; 
     margin-top: 40px;
     margin-left: 60px;        
     display: inline-flex;
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    font-size: 3rem;        
+    font-size: 1.5rem;        
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(139, 0, 133, 0.2);
     transition: all 0.3s ease;
