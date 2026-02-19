@@ -128,13 +128,13 @@ body {
 }
 
 /* --- RESPONSIVE --- */
-@media (max-width: 1600px) {
+@media (max-width: 600px) {
     .contenedor-proyectos {
         column-gap: 100px; /* En pantallas medianas reducimos un poco el hueco */
     }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 500px) {
     .contenedor-proyectos {
         grid-template-columns: 1fr; /* En móviles una sola columna */
         row-gap: 60px;
