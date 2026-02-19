@@ -128,12 +128,22 @@ body {
 }
 
 /* --- RESPONSIVE --- */
-@media screen and (max-width: 400px) {
-    .columna {
-      width: 100%;
+@media (max-width: 600px) {
+    .contenedor-proyectos {
+        column-gap: 100px; /* En pantallas medianas reducimos un poco el hueco */
     }
+}
 
-    .iresponsive {
+@media (max-width: 500px) {
+    .contenedor-proyectos {
+        grid-template-columns: 1fr; /* En móviles una sola columna */
+        row-gap: 60px;
+    }
+    .proyecto-item {
+        flex-direction: column;
+        min-height: auto;
+    }
+    .proyecto-imagen, .proyecto-texto {
         width: 100%;
     }
 }
