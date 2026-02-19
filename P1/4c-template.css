@@ -1,0 +1,155 @@
+/* MANTENEMOS TU ESTRUCTURA ORIGINAL */
+
+body {
+    background-image: url('ESTEBAN_FONDO.png'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+    color: #20151c;
+    font-size: 38px;
+    line-height: 1.8; 
+}
+
+* {
+    box-sizing: border-box;
+}
+  
+.columna {
+    float: left;
+    width: 33.33%;
+    padding: 20px;
+    min-height: 500px;
+}
+
+.izquierda {
+    width: 28%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.derecha {
+    width: 70%;
+    margin-left: 2%;
+}
+
+.fila:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* --- TUS CAJAS CON EFECTO SOBRESALTO (HOVER) --- */
+#c1, #c2 {
+    border-radius: 20px;
+    padding: 30px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote */
+    cursor: pointer;
+    margin-bottom: 40px; /* Separación para que no choquen al saltar */
+}
+
+#c1 { background-color: #c498ba; }
+#c2 { background-color: #d385b5a2; }
+
+/* AQUÍ ESTÁ EL SOBRESALTO */
+#c1:hover, #c2:hover {
+    transform: scale(1.05) translateY(-15px); /* Se agranda y sube */
+    box-shadow: 0 30px 60px rgba(139, 0, 133, 0.4); /* Sombra más fuerte */
+    z-index: 99; /* Se pone por encima */
+}
+
+/* RESALTADO DE TEXTO DENTRO */
+.resaltado {
+    color: #8b0085;
+    font-weight: 700;
+    text-shadow: 1px 1px 0px white;
+}
+
+#c1 img, #c2 img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px auto;
+    border-radius: 15px;
+    border: 3px solid #f1c40f; 
+}
+
+#c2 img { width: 70%; }
+
+/* --- EL RESTO DE TU CÓDIGO --- */
+
+img:hover {
+    transform: scale(1.03);
+    transition: 0.3s ease;
+}
+
+.contacto-abajo {
+    margin-top: 50px;
+    float: right;
+    width: 80%;
+    padding: 35px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    text-align: center; 
+    border: 3px solid #d98cd9;
+}
+
+h2 {
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+h3, h4 { color: #8b0085; }
+
+/* TU BOTÓN ESTILO BELÉN */
+.boton-contenedor {
+    position: relative;
+    background-color: rgba(233, 140, 236, 0.6); 
+    border: 1px solid white;
+    color: rgb(95, 49, 81);
+    padding: 18px 30px 18px 110px; 
+    margin-top: 40px;
+    margin-left: 60px;        
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 3rem;        
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(139, 0, 133, 0.2);
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.solapar {
+    position: absolute;
+    left: -70px;
+    top: 50%;
+    transform: translateY(-50%); 
+    width: 150px;
+    height: 150px;
+    z-index: 10;
+}
+
+.foto1, .foto2 {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    border: 4px solid white;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+.foto2 { opacity: 0; }
+.boton-contenedor:hover { background-color: rgba(255, 142, 246, 0.8); transform: scale(1.05); }
+.boton-contenedor:hover .foto1 { opacity: 0; }
+.boton-contenedor:hover .foto2 { opacity: 1; }
