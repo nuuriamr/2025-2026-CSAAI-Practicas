@@ -7,11 +7,11 @@ body {
     background-attachment: fixed;
     font-family: 'Bebas Neue', sans-serif;
     margin: 0;
-    padding: 40px;
+    padding: 20px;
 }
 
 .center {
-    font-size: 9rem;
+    font-size: 4.5rem;
     text-align: center;
     color: #8b0085;
     text-shadow: 5px 5px white;
@@ -26,14 +26,14 @@ body {
     background-color: rgba(233, 140, 236, 0.6); 
     border: 1px solid white;
     color: rgb(95, 49, 81);
-    padding: 18px 30px 18px 120px; 
+    padding: 12px 25px 12px 85px; 
     margin-top: 20px;
     margin-left: 50px;        
     display: inline-flex;
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    font-size: 3.5rem;        
+    font-size: 2.5rem;        
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(139, 0, 133, 0.2);
     transition: all 0.3s ease;
@@ -41,7 +41,7 @@ body {
 
 .solapar {
     position: absolute;       
-    left: -70px;              
+    left: -40px;              
     top: 50%;                 
     transform: translateY(-50%); 
     width: 150px;             
@@ -67,35 +67,35 @@ body {
 /* --- CONTENEDOR CON SEPARACIÓN MÁXIMA --- */
 .contenedor-proyectos {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); 
-    column-gap: 200px;   /* SEPARACIÓN HORIZONTAL BRUTAL entre columnas */
-    row-gap: 120px;      /* SEPARACIÓN VERTICAL entre filas de proyectos */
-    width: 98%;          /* Casi todo el ancho de la pantalla */
-    max-width: 2200px;   /* Para que en pantallas gigantes se sigan viendo separadas */
-    margin: 100px auto;  /* Centrado y separado del botón/título */
-    padding: 0 40px;     /* Espacio en los bordes de la pantalla */
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); 
+    column-gap: 40px;   /* SEPARACIÓN HORIZONTAL BRUTAL entre columnas */
+    row-gap: 40px;      /* SEPARACIÓN VERTICAL entre filas de proyectos */
+    width: 90%;          /* Casi todo el ancho de la pantalla */
+    max-width: 1400px;   /* Para que en pantallas gigantes se sigan viendo separadas */
+    margin: 40px auto;  /* Centrado y separado del botón/título */
+    padding: 20px;     /* Espacio en los bordes de la pantalla */
 }
 
 .proyecto-item {
     display: flex;
     background: rgba(255, 255, 255, 0.95);
-    border: 6px solid #d98cd9;
-    border-radius: 60px;
+    border: 4px solid #d98cd9;
+    border-radius: 30px;
     overflow: hidden;
-    min-height: 600px;  /* Cuadrados GIGANTES */
-    box-shadow: 0 25px 60px rgba(0,0,0,0.1);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    min-height: 250px;  /* Cuadrados GIGANTES */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 /* EFECTO RESALTADO */
 .proyecto-item:hover {
-    transform: translateY(-30px) scale(1.03); /* Sube más alto al resaltar */
+    transform: translateY(-10px) scale(1.03); /* Sube más alto al resaltar */
     border-color: #ff00ff;
-    box-shadow: 0 40px 80px rgba(255, 0, 255, 0.35); /* Brillo fucsia más intenso */
+    box-shadow: 0 20px 40px rgba(255, 0, 255, 0.35); /* Brillo fucsia más intenso */
 }
 
 .proyecto-imagen {
-    width: 45%;
+    width: 40%;
 }
 
 .proyecto-imagen img {
@@ -106,22 +106,22 @@ body {
 }
 
 .proyecto-texto {
-    width: 55%;
-    padding: 60px;
+    width: 60%;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .proyecto-texto h2 {
-    font-size: 6rem;    /* Nombres de proyectos todavía más grandes */
+    font-size: 2.2rem;    /* Nombres de proyectos todavía más grandes */
     color: #8b0085;
     margin-bottom: 25px;
     letter-spacing: 2px;
 }
 
 .proyecto-texto p {
-    font-size: 2.8rem;  /* Texto de descripción gigante */
+    font-size: 1.5rem;  /* Texto de descripción gigante */
     font-family: 'Arial', sans-serif;
     line-height: 1.1;
     color: #000;
