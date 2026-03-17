@@ -8,7 +8,6 @@ var intervalo;
 
 // 0. DEFINICIÓN DE SONIDOS
 var sonidoAcierto = new Audio('acierto.mp3');
-var sonidoError = new Audio('decepcion.mp3');
 var sonidoExplosion = new Audio('explosion.mp3');
 // Nota: Como no mencionaste un archivo de "victoria" específico, 
 // usaré el de acierto o puedes añadir uno nuevo llamado victoria.mp3
@@ -58,9 +57,6 @@ function pulsarNumero(num) {
     if (acierto) {
         sonidoAcierto.currentTime = 0; // Reinicia el audio por si suena seguido
         sonidoAcierto.play();
-    } else {
-        sonidoError.currentTime = 0;
-        sonidoError.play();
     }
     // Gastar intento
     intentos--;
