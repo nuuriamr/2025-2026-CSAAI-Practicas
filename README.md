@@ -5,4 +5,6 @@ Mis prácticas de la asignatura Construcción de Servicios y Aplicaciones Audiov
 
 * **Práctica 1: CV**
     * [Ver la web de la práctica](https://nuuriamr.github.io/2025-2026-CSAAI-Practicas/P1/)
-    * [Código fuente de la P1](https://github.com/nuuriamr/2025-2026-CSAAI-Practicas/tree/main/P1)
+
+* **Práctica 2: BOOM**
+    * [Ver la web de la práctica  BOOM](https://nuuriamr.github.io/2025-2026-CSAAI-Practicas/P2/)
