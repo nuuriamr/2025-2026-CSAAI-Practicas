@@ -1,16 +1,17 @@
-var sonidoAcierto= new Audio("acierto.mp3");
-var sonidoVictoria= new Audio("victoria.mp3");
-var sonidoDerrota= new Audio("decepcion.mp3");
-var sonidoExplosion=new Audio("explosion.mp3");
-
-
-
-// VARIABLES GLOBALES
 var claveSecreta = [];
 var intentos = 7;
 var partidaActiva = true;
 var segundos = 0;
 var intervalo;
+
+
+// 0. DEFINICIÓN DE SONIDOS
+const sonidoAcierto = new Audio('acierto.mp3');
+const sonidoError = new Audio('decepcion.mp3');
+const sonidoExplosion = new Audio('explosion.mp3');
+// Nota: Como no mencionaste un archivo de "victoria" específico, 
+// usaré el de acierto o puedes añadir uno nuevo llamado victoria.mp3
+const sonidoVictoria = new Audio('victoria.mp3');
 
 // 1. AL CARGAR: Arrancamos el juego
 window.onload = function() {
@@ -52,9 +53,13 @@ function pulsarNumero(num) {
             acierto = true;
         }
     }
-    if (huboAcierto) {
-        sonidoAcierto.currentTime = 0; // Para que suene desde el principio si pulsas rápido
+
+    if (acierto) {
+        sonidoAcierto.currentTime = 0; // Reinicia el audio por si suena seguido
         sonidoAcierto.play();
+    } else {
+        sonidoError.currentTime = 0;
+        sonidoError.play();
     }
     // Gastar intento
     intentos--;
@@ -72,16 +77,16 @@ function comprobarFinal() {
     }
 
     if (descubiertos === 4) {
-        sonidoVictoria.play();
         pararCrono();
         partidaActiva = false;
         document.getElementById("mensaje").innerText = "¡VICTORIA! Tiempo: " + document.getElementById("crono").innerText;
+        sonidoVictoria.play();
     } 
     else if (intentos <= 0) {
-        sonidoDerrota.play();
         pararCrono();
         partidaActiva = false;
         document.getElementById("mensaje").innerText = "Perdiste pulsa RESET para volver a jugar. La clave era " + claveSecreta.join("");
+    sonidoExplosion.play();
     }
 }
 
@@ -124,10 +129,6 @@ function iniciarCrono() {
         let m = Math.floor(segundos / 60);
         let s = segundos % 60;
         document.getElementById("crono").innerText = `0:${m}:${s < 10 ? '0'+s : s}`;
-    if (segundos <= 0) {
-            sonidoExplosion.play(); // --- SONIDO EXPLOSIÓN ---
-            finalizarPartida("¡BOOM! Se acabó el tiempo.");
-        }
     }, 1000);
 }
 
