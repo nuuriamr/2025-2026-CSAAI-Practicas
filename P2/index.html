@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="crono.js"></script>
+    <link rel="stylesheet" href="cromos.css"> 
+    <link rel="icon" sizes="180x180" href='bomba1.ico'>
+    <title>BOMBA</title>
+</head>
+<body>
+
+    <div class="contenedor-principal">
+        <h1>💥 B O O M 💥</h1>
+        
+        <div class="pantalla">
+            <div id="clave-display" class="clave-container">
+                <span id="pos0">*</span>
+                <span id="pos1">*</span>
+                <span id="pos2">*</span>
+                <span id="pos3">*</span>
+            </div>
+            <p></p>
+            <div id="crono">0:00:00</div>
+            <p>Intentos restantes: <b id="intentos-txt">7</b></p>
+            <div id="mensaje">Pulsa un número para empezar</div>
+        </div>
+
+        <div id="teclado" class="teclado">
+            
+        </div>
+
+        <div class="controles">
+            <button onclick="iniciarCrono()" class="btn-start">Start</button>
+            <button onclick="pararCrono()" class="btn-stop">Stop</button>
+            <button onclick="resetJuego()" class="btn-reset">Reset</button>
+        </div>
+    </div>
+
+    <script src="crono.js"></script>
+</body>
+</html>
