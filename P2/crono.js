@@ -1,9 +1,16 @@
+var sonidoAcierto= new Audio("acierto.mp3");
+var sonidoVictoria= new Audio("victoria.mp3");
+var sonidoDerrota= new Audio("decepcion.mp3");
+var sonidoExplosion=new Audio("explosion.mp3");
+
+
+
 // VARIABLES GLOBALES
-let claveSecreta = [];
-let intentos = 7;
-let partidaActiva = true;
-let segundos = 0;
-let intervalo;
+var claveSecreta = [];
+var intentos = 7;
+var partidaActiva = true;
+var segundos = 0;
+var intervalo;
 
 // 1. AL CARGAR: Arrancamos el juego
 window.onload = function() {
@@ -45,7 +52,10 @@ function pulsarNumero(num) {
             acierto = true;
         }
     }
-
+    if (huboAcierto) {
+        sonidoAcierto.currentTime = 0; // Para que suene desde el principio si pulsas rápido
+        sonidoAcierto.play();
+    }
     // Gastar intento
     intentos--;
     document.getElementById("intentos-txt").innerText = intentos;
@@ -62,11 +72,13 @@ function comprobarFinal() {
     }
 
     if (descubiertos === 4) {
+        sonidoVictoria.play();
         pararCrono();
         partidaActiva = false;
         document.getElementById("mensaje").innerText = "¡VICTORIA! Tiempo: " + document.getElementById("crono").innerText;
     } 
     else if (intentos <= 0) {
+        sonidoDerrota.play();
         pararCrono();
         partidaActiva = false;
         document.getElementById("mensaje").innerText = "Perdiste pulsa RESET para volver a jugar. La clave era " + claveSecreta.join("");
@@ -89,6 +101,7 @@ function resetJuego() {
         let n = Math.floor(Math.random() * 10);
         if(!claveSecreta.includes(n)) claveSecreta.push(n);
     }
+    console.log('clave:',claveSecreta)
 
     // Resetear visualmente
     for(let i=0; i<4; i++) {
@@ -111,6 +124,10 @@ function iniciarCrono() {
         let m = Math.floor(segundos / 60);
         let s = segundos % 60;
         document.getElementById("crono").innerText = `0:${m}:${s < 10 ? '0'+s : s}`;
+    if (segundos <= 0) {
+            sonidoExplosion.play(); // --- SONIDO EXPLOSIÓN ---
+            finalizarPartida("¡BOOM! Se acabó el tiempo.");
+        }
     }, 1000);
 }
 

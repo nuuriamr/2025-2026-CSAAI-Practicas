@@ -61,12 +61,5 @@ button:disabled {
 .btn-stop{ color: #a31a1a; border-color: #a31a1a; }
 .btn-reset { color: #da6105; border-color:#da6105; }
 
-@media screen and (max-width: 400px) {
-    .columna {
-      width: 100%;
-    }
-
-    .iresponsive {
-        width: 100%;
-    }
-}
+@media screen and (max-width: 400px) 
+{}
