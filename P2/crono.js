@@ -1,17 +1,18 @@
 var claveSecreta = [];
 var intentos = 7;
+var intentos_consumidos = 0;
 var partidaActiva = true;
 var segundos = 0;
 var intervalo;
 
 
 // 0. DEFINICIÓN DE SONIDOS
-const sonidoAcierto = new Audio('acierto.mp3');
-const sonidoError = new Audio('decepcion.mp3');
-const sonidoExplosion = new Audio('explosion.mp3');
+var sonidoAcierto = new Audio('acierto.mp3');
+var sonidoError = new Audio('decepcion.mp3');
+var sonidoExplosion = new Audio('explosion.mp3');
 // Nota: Como no mencionaste un archivo de "victoria" específico, 
 // usaré el de acierto o puedes añadir uno nuevo llamado victoria.mp3
-const sonidoVictoria = new Audio('victoria.mp3');
+var sonidoVictoria = new Audio('victoria.mp3');
 
 // 1. AL CARGAR: Arrancamos el juego
 window.onload = function() {
@@ -63,6 +64,7 @@ function pulsarNumero(num) {
     }
     // Gastar intento
     intentos--;
+    intentos_consumidos ++;
     document.getElementById("intentos-txt").innerText = intentos;
 
     comprobarFinal();
@@ -79,13 +81,13 @@ function comprobarFinal() {
     if (descubiertos === 4) {
         pararCrono();
         partidaActiva = false;
-        document.getElementById("mensaje").innerText = "¡VICTORIA! Tiempo: " + document.getElementById("crono").innerText;
+        document.getElementById("mensaje").innerText = "¡VICTORIA! Tiempo: " + document.getElementById("crono").innerText +". Intentos consumidos: " + intentos_consumidos  + ". Intentos restantes: " + intentos;
         sonidoVictoria.play();
     } 
     else if (intentos <= 0) {
         pararCrono();
         partidaActiva = false;
-        document.getElementById("mensaje").innerText = "Perdiste pulsa RESET para volver a jugar. La clave era " + claveSecreta.join("");
+        document.getElementById("mensaje").innerText = "Perdiste pulsa RESET para volver a jugar. La clave era "+ claveSecreta.join("") +" Tiempo consumidos: " + document.getElementById("crono").innerText +". Intentos consumidos: " + intentos_consumidos  + ". Intentos restantes: " + intentos ;
     sonidoExplosion.play();
     }
 }
