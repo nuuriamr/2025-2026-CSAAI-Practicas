@@ -105,7 +105,7 @@ function resetJuego() {
         let n = Math.floor(Math.random() * 10);
         if (!claveSecreta.includes(n)) claveSecreta.push(n);
     }
-    console.log('clave:', claveSecreta)
+    console.log('clave:', claveSecreta);
 
     // Resetear visualmente
     for (let i = 0; i < 4; i++) {
