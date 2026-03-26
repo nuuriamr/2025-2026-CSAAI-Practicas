@@ -1,0 +1,341 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #974a7f, #974a7f);
+  font-family: 'Press Start 2P', cursive;
+  overflow: hidden;
+  color: white;
+}  
+
+#game-container {
+  position: relative;
+  width: 1050px;
+  height: 500px;
+  margin: auto;
+}
+#ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80%;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none; /* Permite disparar aunque la UI esté encima */
+    z-index: 10;
+    box-sizing: border-box;
+}
+#canvas {
+  background-color: #4b3647;
+  border: 2px solid #e177b6;
+  display: block;
+}
+
+#controls {         
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  text-shadow: 0 0 5px #ad7799;
+  opacity: 0.7;
+  z-index: 5;
+}
+
+#puntos{
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 16px;
+  color: #ff0;
+}
+
+#level-display {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 16px;
+  color: #0f0;
+}
+
+#twenty-levels{
+  margin-left: 150px;
+}
+
+/* Efecto de neón para el título */
+.game-title {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #a5f1af;
+  text-shadow: 0 0 10px #65ca6a, 0 0 20px #75ac7e, 0 0 30px #ff0080, 0 0 40px #ff0080;
+  font-size: 24px;
+}
+
+/* Efectos de partículas para fondo (opcional) */
+.particle {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Modal para game over/ganar */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.modal-content {
+  background: linear-gradient(145deg, #1a1a2e, #16213e);
+  padding: 30px;
+  border-radius: 10px;
+  border: 3px solid #ff0077;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(255, 0, 162, 0.7);
+}
+
+.modal h2 {
+  color: #00ffff;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.modal button {
+  background: #ff0077;
+  border: none;
+  padding: 10px 20px;
+  font-family: 'Press Start 2P', cursive;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.modal button:hover {
+  background: rgb(210, 117, 165);
+  transform: scale(1.1);
+}
+.modos {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+  display: flex;
+  gap: 300px;
+}
+
+.modos button {
+  padding: 15px 30px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 16px;
+  background-color: #ff0077;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.modos button:hover {
+  background-color: rgb(210, 117, 165);
+  transform: scale(1.05);
+}
+
+.modos button:last-child {
+  background-color: #844b65;
+}
+
+.modos button:last-child:hover {
+  background-color: #823c64;
+}
+
+.game-controls {
+  position: center;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  z-index: 100;
+}
+
+.game-controls button {
+  padding: 12px 25px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: 2px solid #00ffff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.game-controls button:hover {
+  background-color: rgba(0, 150, 255, 0.7);
+  transform: scale(1.05);
+}
+
+.game-controls button:active {
+  transform: scale(0.95);
+}
+
+#btn-shoot {
+  background-color: rgba(160, 55, 111, 0.7);
+}
+
+#ui-layer {
+    position: absolute;
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 10;
+}
+
+#energy-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #00ffff;
+    font-size: 10px;
+    margin-right: 50px;
+}
+
+#energy-bar {
+    width: 100px;
+    height: 15px;
+    border: 2px solid #00ffff;
+    background: #000;
+}
+
+#energy-fill {
+    width: 100%;
+    height: 100%;
+    background: #00ffff; /* Color normal: Cian */
+    transition: width 0.2s, background-color 0.3s;
+}
+
+/* Añade esta regla si quieres que parpadee o cambie al agotarse */
+#energy-fill[style*="width: 0%"] {
+    background: #ff0000; /* Rojo cuando está vacía */
+}
+
+#vivas-display {
+    color: #d162a9;
+    text-shadow: 0 0 5px #000;
+    margin-left: 30px;
+}
+
+/* Ajuste para que el canvas se vea bien en móviles */
+canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+@media screen and (max-width: 760px) {
+
+  body {
+    flex-direction: column;
+    height: auto;
+    padding: 20px 10px;
+    overflow-y: auto;
+  }
+
+  #game-container {
+    width: 80%;
+    max-width: 480px;
+    aspect-ratio: 4 / 3;
+  }
+
+  #canvas {
+    width: 100%;
+    height: auto;
+    max-height: 50vh;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .game-title {
+    font-size: 18px;
+    top: 20px;
+  }
+
+  #puntos, #level-display {
+    font-size: 12px;
+  }
+
+  #controls {
+    visibility: hidden;
+    bottom: 80px; /* Un poco más arriba en móviles para no tapar los botones */
+    font-size: 30px;
+  }
+
+  .game-controls {
+    position: center;
+    margin-bottom: 40px;
+    margin-top: 100px;
+    margin-right: 250px;
+  }
+
+  .game-controls button {
+    padding: 10px 20px;
+    font-size: 14px;
+    width: auto;
+  }
+
+  #btn-shoot {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .modos {
+    flex-direction: column;
+    gap: 20px;
+    top: auto;
+    margin-top: 30px;
+    margin-right: 300px;
+    margin-left: -50px;
+  }
+
+  .modos button {
+    font-size: 14px;
+    padding: 12px;
+    width: 90%;
+  }
+
+  .modal-content {
+    width: 90%;
+    font-size: 14px;
+    padding: 20px;
+  }
+
+  .modal h2 {
+    font-size: 20px;
+  }
+
+  .modal button {
+    font-size: 12px;
+    padding: 10px 16px;
+  }
+}
