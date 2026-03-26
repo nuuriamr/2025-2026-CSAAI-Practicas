@@ -170,12 +170,13 @@ body {
 
 .game-controls {
   position: center;
-  bottom: 20px;
-  left: 50%;
+  bottom: 50px;
+  left: 80%;
   transform: translateX(-50%);
   display: flex;
-  gap: 15px;
-  z-index: 100;
+  gap: 20px;
+  z-index: 5;
+  margin-left: 250px;
 }
 
 .game-controls button {
@@ -242,7 +243,7 @@ body {
 }
 
 #vivas-display {
-    color: #6b3658;
+    color: #d162a9;
     text-shadow: 0 0 5px #000;
     margin-left: 30px;
 }
@@ -252,7 +253,8 @@ canvas {
     max-width: 100%;
     height: auto;
 }
-@media screen and (max-width: 400px) {
+
+@media screen and (max-width: 50px) {
     .columna {
       width: 100%;
     }

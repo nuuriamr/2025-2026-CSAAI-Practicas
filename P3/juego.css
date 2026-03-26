@@ -254,89 +254,98 @@ canvas {
     height: auto;
 }
 
-@media screen and (max-width: 760px) {
-
-  body {
-    flex-direction: column;
-    height: auto;
-    padding: 20px 10px;
-    overflow-y: auto;
-  }
-
-  #game-container {
-    width: 80%;
-    max-width: 480px;
-    aspect-ratio: 4 / 3;
-  }
-
-  #canvas {
+@media screen and (max-width: 400px) {
+  /* 1. Ajuste del contenedor para que la UI no flote sobre el juego de forma caótica */
+  #ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: auto;
-    max-height: 50vh;
-    display: block;
-    margin: 0 auto;
+    display: grid; /* Cambiamos a GRID para control total */
+    grid-template-columns: 1fr 1fr; /* Dos columnas */
+    grid-template-rows: auto auto; /* Dos filas */
+    gap: 10px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.7); /* Fondo más oscuro para ver las letras */
+    box-sizing: border-box;
+    pointer-events: none;
+    z-index: 100;
   }
 
-  .game-title {
-    font-size: 18px;
-    top: 20px;
+  /* 2. Posicionamos cada elemento en su sitio sin que se toquen */
+  #puntos {
+    grid-column: 5;
+    grid-row: 1;
+    font-size: 1px;
+    color: #ffff00;
+    text-align: left;
+    margin: 0;
   }
 
-  #puntos, #level-display {
-    font-size: 12px;
+  #vivas-display {
+    margin-left: 500px;
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 1px;
+    color: #ff0077;
+    text-align: right;
+ 
   }
 
-  #controls {
-    visibility: hidden;
-    bottom: 80px; /* Un poco más arriba en móviles para no tapar los botones */
-    font-size: 30px;
+  #energy-container {
+    font-size: 5px;
+    grid-column: 1 / span 2; /* Ocupa toda la fila de abajo */
+    grid-row: 600;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    text-align: right;
+
   }
 
+  #energy-container span {
+    font-size: 5px;
+    color: #00ffff;
+  }
+
+  #energy-bar {
+    flex-grow: 1; /* La barra se estira para llenar el espacio */
+    max-width: 150px;
+    height: 12px;
+    border: 1px solid #00ffff;
+    font-size: 5px;
+  }
+
+  /* 3. Botones táctiles abajo del todo */
   .game-controls {
-    position: center;
-    margin-bottom: 40px;
-    margin-top: 100px;
-    margin-right: 250px;
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 0;
+    padding: 0 10px;
+    box-sizing: border-box;
   }
 
   .game-controls button {
-    padding: 10px 20px;
-    font-size: 14px;
-    width: auto;
-  }
-
-  #btn-shoot {
-    padding: 10px 20px;
-    font-size: 14px;
-  }
-
-  .modos {
-    flex-direction: column;
-    gap: 20px;
-    top: auto;
-    margin-top: 30px;
-    margin-right: 300px;
-    margin-left: -50px;
-  }
-
-  .modos button {
-    font-size: 14px;
-    padding: 12px;
-    width: 90%;
-  }
-
-  .modal-content {
-    width: 90%;
-    font-size: 14px;
-    padding: 20px;
-  }
-
-  .modal h2 {
+    width: 60px;
+    height: 60px;
     font-size: 20px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(80, 40, 70, 0.9);
+    border: 2px solid #ff0077;
+    border-radius: 10px;
   }
 
-  .modal button {
-    font-size: 12px;
-    padding: 10px 16px;
+  /* Ocultar texto innecesario en móvil para limpiar la pantalla */
+  #controls, .game-title {
+    display: none;
   }
 }
