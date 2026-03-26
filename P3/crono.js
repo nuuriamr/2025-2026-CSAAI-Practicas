@@ -226,9 +226,34 @@ document.getElementById("single-level").onclick = () => {
 
 document.getElementById("restart-button").onclick = () => location.reload();
 
-// Soporte móvil
-document.getElementById('btn-left').ontouchstart = () => teclas["ArrowLeft"] = true;
-document.getElementById('btn-left').ontouchend = () => teclas["ArrowLeft"] = false;
-document.getElementById('btn-right').ontouchstart = () => teclas["ArrowRight"] = true;
-document.getElementById('btn-right').ontouchend = () => teclas["ArrowRight"] = false;
-document.getElementById('btn-shoot').onclick = () => disparar();
+// --- SOPORTE MÓVIL Y TÁCTIL ---
+const btnLeft = document.getElementById('btn-left');
+const btnRight = document.getElementById('btn-right');
+const btnShoot = document.getElementById('btn-shoot');
+
+// Movimiento Izquierda
+btnLeft.addEventListener('touchstart', (e) => { 
+    e.preventDefault(); 
+    teclas["ArrowLeft"] = true; 
+});
+btnLeft.addEventListener('touchend', () => teclas["ArrowLeft"] = false);
+
+// Movimiento Derecha
+btnRight.addEventListener('touchstart', (e) => { 
+    e.preventDefault(); 
+    teclas["ArrowRight"] = true; 
+});
+btnRight.addEventListener('touchend', () => teclas["ArrowRight"] = false);
+
+// Disparo
+btnShoot.addEventListener('touchstart', (e) => { 
+    e.preventDefault(); 
+    disparar(); 
+});
+
+// Compatibilidad con ratón (para probarlo en el PC con el click)
+btnLeft.addEventListener('mousedown', () => teclas["ArrowLeft"] = true);
+btnLeft.addEventListener('mouseup', () => teclas["ArrowLeft"] = false);
+btnRight.addEventListener('mousedown', () => teclas["ArrowRight"] = true);
+btnRight.addEventListener('mouseup', () => teclas["ArrowRight"] = false);
+btnShoot.onclick = () => disparar();
