@@ -3,10 +3,10 @@ Mis prácticas de la asignatura Construcción de Servicios y Aplicaciones Audiov
 
 ## 📺 Listado de Prácticas
 
-* **Práctica 1: CV**
+* **📜 Práctica 1: CV 📜**
     * [Ver la web de la práctica](https://nuuriamr.github.io/2025-2026-CSAAI-Practicas/P1/)
 
-* **Práctica 2: BOOM**
+* **💣 Práctica 2: BOOM 💣**
     * [Ver la web de la práctica  BOOM](https://nuuriamr.github.io/2025-2026-CSAAI-Practicas/P2/)
-* **Práctica 3: INVASIÓN ALIENÍGENA**
+* **👽 Práctica 3: INVASIÓN ALIENÍGENA 👽**
     * [Ver la web de la práctica  BOOM](https://nuuriamr.github.io/2025-2026-CSAAI-Practicas/P3/)
