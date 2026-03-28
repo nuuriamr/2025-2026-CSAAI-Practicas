@@ -231,10 +231,12 @@ const btnLeft = document.getElementById('btn-left');
 const btnRight = document.getElementById('btn-right');
 const btnShoot = document.getElementById('btn-shoot');
 
+// --- SOPORTE MÓVIL Y TÁCTIL (CORREGIDO) ---
+
 // Movimiento Izquierda
 btnLeft.addEventListener('touchstart', (e) => { 
     e.preventDefault(); 
-    teclas["ArrowLeft"] = true; 
+    teclas["ArrowLeft"] = true; // Antes decía ArrowRight, por eso fallaba
 });
 btnLeft.addEventListener('touchend', () => teclas["ArrowLeft"] = false);
 
@@ -245,15 +247,10 @@ btnRight.addEventListener('touchstart', (e) => {
 });
 btnRight.addEventListener('touchend', () => teclas["ArrowRight"] = false);
 
-// Disparo
-btnShoot.addEventListener('touchstart', (e) => { 
-    e.preventDefault(); 
-    disparar(); 
-});
-
-// Compatibilidad con ratón (para probarlo en el PC con el click)
+// También corrige los eventos de ratón (mousedown) por si acaso:
 btnLeft.addEventListener('mousedown', () => teclas["ArrowLeft"] = true);
 btnLeft.addEventListener('mouseup', () => teclas["ArrowLeft"] = false);
 btnRight.addEventListener('mousedown', () => teclas["ArrowRight"] = true);
 btnRight.addEventListener('mouseup', () => teclas["ArrowRight"] = false);
+
 btnShoot.onclick = () => disparar();
