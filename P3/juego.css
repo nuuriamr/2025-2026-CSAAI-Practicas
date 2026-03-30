@@ -171,7 +171,6 @@ body {
 }
 
 .game-controls {
-  position: center;
   bottom: 50px;
   left: 80%;
   transform: translateX(-50%);
