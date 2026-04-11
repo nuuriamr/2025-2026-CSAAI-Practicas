@@ -11,5 +11,5 @@ Mis prácticas de la asignatura Construcción de Servicios y Aplicaciones Audiov
 * **👽 Práctica 3: INVASIÓN ALIENÍGENA 👽**
     * [Ver la web de la práctica  Invasión alienigena](https://nuuriamr.github.io/2025-2026-CSAAI-Practicas/P3/)
 
-* **🔤 Práctica 3: Vence la palabra 🔤**
+* **🔤 Práctica 4: Vence la palabra 🔤**
     * [Ver la web de la práctica  vence la pablabra](https://nuuriamr.github.io/2025-2026-CSAAI-Practicas/P4/)
