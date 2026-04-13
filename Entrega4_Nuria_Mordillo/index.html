@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VENCE LA PALABRA</title>
+    <link rel="stylesheet" href="css.css">
+    <link rel="icon" sizes="180x180" href='copa.ico'>
+</head>
+<body>
+    <div class="game-container">
+        <h1>VENCE LA PALABRA</h1>
+        <div class="controls-panel">
+            <select id="select-set">
+                <option value="ron-cola">Ron / Cola</option>
+                <option value="larios-limon">Larios / Limón</option>
+            </select>
+            <select id="select-level">
+                <option value="1">Nivel 1</option>
+                <option value="2">Nivel 2</option>
+                <option value="3">Nivel 3</option>
+                <option value="4">Nivel 4</option>
+                <option value="5">Nivel 5</option>
+            </select>
+            <button id="btn-start">INICIAR</button>
+            <button id="btn-stop">PARAR</button>
+            <label><input type="checkbox" id="check-music"> Música 🔊</label>
+        </div>
+
+        <section id="status-display">
+            <div>Nivel: <span id="nivel-num">1</span></div>
+            <div>Tiempo: <span id="crono">00:00</span></div>
+            <div>Estado: <span id="estado-txt">Esperando</span></div>
+        </section>
+
+        <div id="word-area" style="background: #e91e63; height: 70px; display: flex; align-items: center; justify-content: center; border-radius: 8px; margin-bottom: 20px;">
+            <h2 id="pantalla-palabra">¡DALE A INICIO!</h2>
+        </div>
+
+        <section class="grid-container" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+            <div class="cell" id="c0"></div>
+            <div class="cell" id="c1"></div>
+            <div class="cell" id="c2"></div>
+            <div class="cell" id="c3"></div>
+            <div class="cell" id="c4"></div>
+            <div class="cell" id="c5"></div>
+            <div class="cell" id="c6"></div>
+            <div class="cell" id="c7"></div>
+        </section>
+    </div>
+    <script src="juego.js"></script>
+</body>
+</html>
