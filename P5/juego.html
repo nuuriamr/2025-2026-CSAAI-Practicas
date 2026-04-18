@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASI-FIFA </title>
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="icon" sizes="180x180" href='fifa.ico'>
+
+</head>
+<body>
+    <div id="game-container">
+        <div id="overlay">
+            <h1 id="main-title">CASI-FIFA</h1>
+            <p id="main-subtitle">Selecciona Modo de Juego</p>
+            <div id="menu">
+                <button onclick="initGame('3GOALS')">Partido a 3 Goles</button>
+                <button onclick="initGame('GOLDEN')">Gol de Oro</button>
+            </div>
+            <div id="result-screen" class="hidden">
+                <h2 id="end-message"></h2>
+                <button onclick="resetToMenu()">Volver al Menú</button>
+            </div>
+        </div>
+
+        <div id="hud" class="hidden">
+            <div id="top-bar">
+                <div id="score">0 - 0</div>
+                <div id="mode-text">A 3 goles</div>
+            </div>
+            <div id="announcer"></div>
+        </div>
+
+        <canvas id="field"></canvas>
+
+        <div id="controls" class="hidden">
+            <div class="d-pad">
+                <button class="ctrl-btn" id="btn-up">↑</button>
+                <div class="horizontal-btns">
+                    <button class="ctrl-btn" id="btn-left">←</button>
+                    <button class="ctrl-btn" id="btn-right">→</button>
+                </div>
+                <button class="ctrl-btn" id="btn-down">↓</button>
+            </div>
+            <div class="action-btns">
+                <div class="rot-btns">
+                    <button class="ctrl-btn rotate" id="btn-rot-l">↺</button>
+                    <button class="ctrl-btn rotate" id="btn-rot-r">↻</button>
+                </div>
+                <button class="ctrl-btn shoot" id="btn-shoot">CHUTAR</button>
+            </div>
+        </div>
+    </div>
+    <script src="juego.js"></script>
+</body>
+</html>
