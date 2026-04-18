@@ -13,5 +13,5 @@ Mis prácticas de la asignatura Construcción de Servicios y Aplicaciones Audiov
 
 * **🔤 Práctica 4: Vence la palabra 🔤**
     * [Ver la web de la práctica  vence la pablabra](https://nuuriamr.github.io/2025-2026-CSAAI-Practicas/P4/)
-* **🔤 Práctica 5: CASI-FIFA 🔤**
+* **⚽ Práctica 5: CASI-FIFA ⚽**
     * [Ver la web de la práctica  CASI-FIFA](https://nuuriamr.github.io/2025-2026-CSAAI-Practicas/P5/)
