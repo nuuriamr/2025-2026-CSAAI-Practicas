@@ -67,7 +67,7 @@ function shoot() {
     let dx = ball.x - player.x;
     let dy = ball.y - player.y;
     let dist = Math.sqrt(dx*dx + dy*dy);
-    if (dist < 50) { // Rango de disparo ligeramente aumentado para mejor sensación
+    if (dist < 50) { 
         ball.vx = Math.cos(player.angle) * 18;
         ball.vy = Math.sin(player.angle) * 18;
     }
@@ -104,15 +104,25 @@ function update() {
     if (keys['KeyA']) player.angle -= 0.07;
     if (keys['KeyD']) player.angle += 0.07;
 
-    // Movimiento Bots
+    // Movimiento Bots con IA Ofensiva
     bots.forEach(b => {
-        let dx = ball.x - b.x, dy = ball.y - b.y;
+        let dx = ball.x - b.x;
+        let dy = ball.y - b.y;
         let dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist > 5) { 
-            b.x += (dx/dist) * b.speed; 
-            b.y += (dy/dist) * b.speed; 
+
+        if (dist > 5) {
+            // El bot intenta posicionarse detrás del balón respecto a tu portería (x: 0)
+            let targetX = ball.x + 30; 
+            let targetY = ball.y;
+            
+            let moveX = targetX - b.x;
+            let moveY = targetY - b.y;
+            let moveDist = Math.sqrt(moveX*moveX + moveY*moveY);
+            
+            b.x += (moveX / moveDist) * b.speed;
+            b.y += (moveY / moveDist) * b.speed;
         }
-        handleCollision(b);
+        handleCollision(b, true); // true indica que es un bot
     });
 
     // Física del Balón
@@ -121,53 +131,47 @@ function update() {
     ball.vx *= ball.friction; 
     ball.vy *= ball.friction;
 
-    // Límites de velocidad para evitar que "desaparezca"
     const maxSpeed = 20;
     ball.vx = Math.min(Math.max(ball.vx, -maxSpeed), maxSpeed);
     ball.vy = Math.min(Math.max(ball.vy, -maxSpeed), maxSpeed);
 
-    // Rebotes Paredes
     if (ball.y < 12 || ball.y > 588) {
         ball.vy *= -1;
         ball.y = ball.y < 12 ? 12 : 588;
     }
 
-    // Portería Izquierda (Bot marca)
+    // Portería Izquierda (Tuya)
     if (ball.x < 12) {
-        if (ball.y > goalY && ball.y < goalY + goalWidth) {
-            checkGoal(false);
-        } else {
-            ball.x = 12; 
-            ball.vx *= -1;
-        }
+        if (ball.y > goalY && ball.y < goalY + goalWidth) checkGoal(false);
+        else { ball.x = 12; ball.vx *= -1; }
     }
-    // Portería Derecha (Jugador marca)
+    // Portería Derecha (Rival)
     if (ball.x > 988) {
-        if (ball.y > goalY && ball.y < goalY + goalWidth) {
-            checkGoal(true);
-        } else {
-            ball.x = 988; 
-            ball.vx *= -1;
-        }
+        if (ball.y > goalY && ball.y < goalY + goalWidth) checkGoal(true);
+        else { ball.x = 988; ball.vx *= -1; }
     }
 
-    handleCollision(player);
+    handleCollision(player, false);
 }
 
-function handleCollision(p) {
+function handleCollision(p, isBot) {
     let dx = ball.x - p.x;
     let dy = ball.y - p.y;
     let dist = Math.sqrt(dx*dx + dy*dy);
     
     if (dist < 37 && dist > 0) { 
         let ang = Math.atan2(dy, dx);
-        // Reposicionar balón fuera del radio para evitar atascos
         ball.x = p.x + Math.cos(ang) * 38;
         ball.y = p.y + Math.sin(ang) * 38;
         
-        // Transferir fuerza
-        ball.vx += Math.cos(ang) * 2.5; 
-        ball.vy += Math.sin(ang) * 2.5;
+        if (isBot) {
+            // Si es bot, le da un impulso extra hacia tu portería (izquierda)
+            ball.vx = -8; 
+            ball.vy += (canvas.height/2 - ball.y) * 0.01; // Apunta ligeramente al centro
+        } else {
+            ball.vx += Math.cos(ang) * 2.5; 
+            ball.vy += Math.sin(ang) * 2.5;
+        }
     }
 }
 
@@ -202,71 +206,34 @@ function checkWin() {
     return false;
 }
 
-// --- RENDERIZADO ---
 function draw() {
-    // Fondo y campo
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.strokeStyle = "white"; 
     ctx.lineWidth = 4; 
     ctx.strokeRect(0, 0, 1000, 600);
-    
-    // Línea de medio campo
-    ctx.beginPath(); 
-    ctx.moveTo(500, 0); 
-    ctx.lineTo(500, 600); 
-    ctx.stroke();
-
-    // Porterías
+    ctx.beginPath(); ctx.moveTo(500, 0); ctx.lineTo(500, 600); ctx.stroke();
     ctx.fillStyle = "rgba(85, 85, 85, 0.8)"; 
     ctx.fillRect(0, goalY, 10, goalWidth); 
     ctx.fillRect(990, goalY, 10, goalWidth);
 
-    // Dibujar Jugador y Bots
     [player, ...bots].forEach(p => {
-        if (!isNaN(p.x)) {
-            ctx.fillStyle = "white"; 
-            ctx.beginPath(); 
-            ctx.arc(p.x, p.y, 25, 0, Math.PI * 2); 
-            ctx.fill();
-            
-            ctx.fillStyle = p.color; 
-            ctx.beginPath(); 
-            ctx.arc(p.x, p.y, 20, 0, Math.PI * 2); 
-            ctx.fill();
-        }
+        ctx.fillStyle = "white"; ctx.beginPath(); ctx.arc(p.x, p.y, 25, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = p.color; ctx.beginPath(); ctx.arc(p.x, p.y, 20, 0, Math.PI * 2); ctx.fill();
     });
 
-    // Indicador de dirección (Triángulo amarillo)
     if (gameRunning) {
-        ctx.save(); 
-        ctx.translate(player.x, player.y); 
-        ctx.rotate(player.angle);
-        ctx.fillStyle = "yellow"; 
-        ctx.beginPath(); 
-        ctx.moveTo(35, 0); 
-        ctx.lineTo(25, -7); 
-        ctx.lineTo(25, 7); 
-        ctx.fill();
+        ctx.save(); ctx.translate(player.x, player.y); ctx.rotate(player.angle);
+        ctx.fillStyle = "yellow"; ctx.beginPath(); ctx.moveTo(35, 0); ctx.lineTo(25, -7); ctx.lineTo(25, 7); ctx.fill();
         ctx.restore();
     }
 
-    // Dibujar Balón
     if (!isNaN(ball.x)) {
-        ctx.fillStyle = "#333"; // Sombra balón
-        ctx.beginPath(); ctx.arc(ball.x+2, ball.y+2, 12, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = "white"; 
-        ctx.beginPath(); 
-        ctx.arc(ball.x, ball.y, 12, 0, Math.PI * 2); 
-        ctx.fill();
+        ctx.fillStyle = "#333"; ctx.beginPath(); ctx.arc(ball.x+2, ball.y+2, 12, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "white"; ctx.beginPath(); ctx.arc(ball.x, ball.y, 12, 0, Math.PI * 2); ctx.fill();
     }
-
     requestAnimationFrame(draw);
 }
 
-function resetToMenu() { 
-    location.reload(); 
-}
-
-// Ejecutar bucles
+function resetToMenu() { location.reload(); }
 setInterval(update, 1000/60);
 draw();
