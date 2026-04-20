@@ -1,65 +1,148 @@
 body {
-    margin: 10;
+    margin: 0;
+    padding: 0;
     background-image: url(cesped.webp);
-    color: rgb(241, 236, 239);
+    color: white;
     font-family: sans-serif;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 100vw;
     touch-action: none;
 }
 
 #game-container {
     position: relative;
-    border: 4px solid rgb(243, 58, 175);
+    width: 100%;
+    max-width: 1000px;
+    aspect-ratio: 1000 / 600;
     background-image: url(cesped.webp);
     background-size: cover;
-    max-width: 100vw;
+    border: 2px solid #f33abf;
+    display: flex;
+    flex-direction: column;
 }
 
-canvas { display: block; max-width: 100%; height: auto; }
+canvas {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: rgba(0, 255, 0, 0.1); /* Por si falla la imagen */
+}
 
+/* Ajustes del Menú y Overlay */
 #overlay {
     position: absolute; inset: 0;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.85);
     display: flex; flex-direction: column;
     justify-content: center; align-items: center;
-    z-index: 100;
+    z-index: 1000;
+    text-align: center;
 }
 
+button {
+    padding: 15px 25px;
+    margin: 10px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    background: #21ecf3;
+    cursor: pointer;
+}
+
+/* HUD (Marcador) */
 #hud {
-    position: absolute; top: 10px; width: 100%;
-    text-align: center; z-index: 10;
+    position: absolute;
+    top: 5px;
+    width: 100%;
+    pointer-events: none;
+    z-index: 50;
+}
+
+#score {
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px black;
 }
 
 #announcer {
-    position: absolute; top: 550%; left: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 3em; color: #a2efe8; z-index: 11;
+    font-size: 3rem;
+    color: #fff;
+    text-shadow: 0 0 10px #21ecf3;
 }
 
+/* CONTROLES MÓVILES ADAPTATIVOS */
 #controls {
-    position: absolute; bottom: 10px; width: 100%;
-    display: flex; justify-content: space-between;
-    padding: 0 10px; box-sizing: border-box;
-    z-index: 150; /* Por encima de todo */
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 20px;
+    pointer-events: none; /* Para que no bloquee clics accidentales */
+    z-index: 2000;
+}
+
+.d-pad, .action-btns {
+    pointer-events: auto; /* Reactivamos clics en los botones */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .ctrl-btn {
-    width: 60px; height: 60px;
-    background: rgba(255, 255, 255, 0.3);
-    border: 2px solid white;
-    color: rgb(249, 243, 247); border-radius: 70%;
-    font-size: 20px; font-weight: bold;
-    touch-action: none; /* Importante para evitar scroll */
+    width: 65px;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.d-pad { display: flex; flex-direction: column; align-items: center; }
-.horizontal-btns { display: flex; gap: 35px; }
-.action-btns { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.horizontal-btns { display: flex; gap: 20px; }
+.action-btns { gap: 15px; }
 .rot-btns { display: flex; gap: 10px; }
 
-.shoot { width: 100px; border-radius: 10px; background: rgba(243, 58, 175, 0.7); }
+.shoot {
+    width: 90px;
+    height: 90px;
+    background: rgba(243, 58, 175, 0.6);
+    border-radius: 20px;
+    font-size: 16px;
+}
+
 .hidden { display: none !important; }
+
+/* --- RESPONSIVE / ORIENTACIÓN --- */
+
+/* Si el móvil está en VERTICAL */
+@media (orientation: portrait) {
+    #game-container {
+        transform: rotate(0deg);
+        width: 95vw;
+    }
+    
+    #controls {
+        bottom: 5vh;
+    }
+}
+
+/* Si la pantalla es muy pequeña (móviles antiguos) */
+@media (max-height: 500px) {
+    .ctrl-btn { width: 50px; height: 50px; font-size: 18px; }
+    .shoot { width: 70px; height: 70px; }
+}
