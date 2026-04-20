@@ -28,7 +28,7 @@ let currentMode = '';
 let score = { player: 0, bot: 0 };
 const keys = {};
 
-const player = { x: 150, y: 300, color: '#21ecf3', speed: 5, angle: 0 };
+const player = { x: 150, y: 300, color: '#21ecf3', speed: 8, angle: 0 };
 const bots = [
     { x: 800, y: 200, color: '#f436c5', speed: 3.2 },
     { x: 850, y: 400, color: '#f43678', speed: 2.8 }
@@ -68,8 +68,8 @@ function shoot() {
     let dy = ball.y - player.y;
     let dist = Math.sqrt(dx*dx + dy*dy);
     if (dist < 50) { 
-        ball.vx = Math.cos(player.angle) * 18;
-        ball.vy = Math.sin(player.angle) * 18;
+        ball.vx = Math.cos(player.angle) * 22;
+        ball.vy = Math.sin(player.angle) * 22;
     }
 }
 
@@ -101,8 +101,8 @@ function update() {
     if (keys['ArrowDown'] && player.y < 575) player.y += player.speed;
     if (keys['ArrowLeft'] && player.x > 25) player.x -= player.speed;
     if (keys['ArrowRight'] && player.x < 975) player.x += player.speed;
-    if (keys['KeyA']) player.angle -= 0.07;
-    if (keys['KeyD']) player.angle += 0.07;
+    if (keys['KeyA']) player.angle -= 0.12;
+    if (keys['KeyD']) player.angle += 0.12;
 
     // Movimiento Bots con IA Ofensiva
     bots.forEach(b => {
@@ -169,8 +169,8 @@ function handleCollision(p, isBot) {
             ball.vx = -8; 
             ball.vy += (canvas.height/2 - ball.y) * 0.01; // Apunta ligeramente al centro
         } else {
-            ball.vx += Math.cos(ang) * 2.5; 
-            ball.vy += Math.sin(ang) * 2.5;
+            ball.vx += Math.cos(ang) * 3; 
+            ball.vy += Math.sin(ang) * 3;
         }
     }
 }
