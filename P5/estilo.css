@@ -149,12 +149,12 @@ button {
     }
     
     #controls {
-        bottom: -30vh;
+        bottom: -50vh;
     }
 }
 
 /* Si la pantalla es muy pequeña (móviles antiguos) */
 @media (max-height: 300px) {
-    .ctrl-btn { width: 20px; height: 20px; font-size: 10px; }
+    .ctrl-btn { width:20px; height: 20px; font-size: 10px; }
     .shoot { width: 40px; height: 40px; }
 }
