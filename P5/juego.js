@@ -24,6 +24,7 @@ function playSound(a) {
 
 // --- ESTADO DEL JUEGO ---
 let gameRunning = false;
+let isCountdown = false; // Nueva bandera para la cuenta atrás
 let currentMode = ''; 
 let score = { player: 0, bot: 0 };
 const keys = {};
@@ -63,7 +64,7 @@ window.addEventListener('keyup', e => keys[e.code] = false);
 window.addEventListener('keydown', e => { if(e.code === 'Space') shoot(); });
 
 function shoot() {
-    if (!gameRunning) return;
+    if (!gameRunning || isCountdown) return;
     let dx = ball.x - player.x;
     let dy = ball.y - player.y;
     let dist = Math.sqrt(dx*dx + dy*dy);
@@ -71,6 +72,29 @@ function shoot() {
         ball.vx = Math.cos(player.angle) * 22;
         ball.vy = Math.sin(player.angle) * 22;
     }
+}
+
+// --- LÓGICA DE CUENTA ATRÁS ---
+function startCountdown(callback) {
+    isCountdown = true;
+    gameRunning = false;
+    let count = 3;
+    announcer.innerText = count;
+    
+    const interval = setInterval(() => {
+        count--;
+        if (count > 0) {
+            announcer.innerText = count;
+        } else if (count === 0) {
+            announcer.innerText = "¡YA!";
+        } else {
+            clearInterval(interval);
+            announcer.innerText = "";
+            isCountdown = false;
+            gameRunning = true;
+            if (callback) callback();
+        }
+    }, 800);
 }
 
 // --- LÓGICA DE JUEGO ---
@@ -82,7 +106,9 @@ function initGame(mode) {
     overlay.classList.add('hidden');
     hud.classList.remove('hidden');
     controls.classList.remove('hidden');
-    gameRunning = true;
+    
+    // Iniciar con cuenta atrás
+    startCountdown();
 }
 
 function resetPositions() {
@@ -94,7 +120,8 @@ function resetPositions() {
 }
 
 function update() {
-    if (!gameRunning) return;
+    // Si no está corriendo o estamos en cuenta atrás, no procesar movimientos
+    if (!gameRunning || isCountdown) return;
 
     // Movimiento Jugador
     if (keys['ArrowUp'] && player.y > 25) player.y -= player.speed;
@@ -104,25 +131,22 @@ function update() {
     if (keys['KeyA']) player.angle -= 0.12;
     if (keys['KeyD']) player.angle += 0.12;
 
-    // Movimiento Bots con IA Ofensiva
+    // Movimiento Bots
     bots.forEach(b => {
         let dx = ball.x - b.x;
         let dy = ball.y - b.y;
         let dist = Math.sqrt(dx*dx + dy*dy);
 
         if (dist > 5) {
-            // El bot intenta posicionarse detrás del balón respecto a tu portería (x: 0)
             let targetX = ball.x + 30; 
             let targetY = ball.y;
-            
             let moveX = targetX - b.x;
             let moveY = targetY - b.y;
             let moveDist = Math.sqrt(moveX*moveX + moveY*moveY);
-            
             b.x += (moveX / moveDist) * b.speed;
             b.y += (moveY / moveDist) * b.speed;
         }
-        handleCollision(b, true); // true indica que es un bot
+        handleCollision(b, true);
     });
 
     // Física del Balón
@@ -140,12 +164,10 @@ function update() {
         ball.y = ball.y < 12 ? 12 : 588;
     }
 
-    // Portería Izquierda (Tuya)
     if (ball.x < 12) {
         if (ball.y > goalY && ball.y < goalY + goalWidth) checkGoal(false);
         else { ball.x = 12; ball.vx *= -1; }
     }
-    // Portería Derecha (Rival)
     if (ball.x > 988) {
         if (ball.y > goalY && ball.y < goalY + goalWidth) checkGoal(true);
         else { ball.x = 988; ball.vx *= -1; }
@@ -165,9 +187,8 @@ function handleCollision(p, isBot) {
         ball.y = p.y + Math.sin(ang) * 38;
         
         if (isBot) {
-            // Si es bot, le da un impulso extra hacia tu portería (izquierda)
             ball.vx = -8; 
-            ball.vy += (canvas.height/2 - ball.y) * 0.01; // Apunta ligeramente al centro
+            ball.vy += (canvas.height/2 - ball.y) * 0.01;
         } else {
             ball.vx += Math.cos(ang) * 3; 
             ball.vy += Math.sin(ang) * 3;
@@ -184,9 +205,9 @@ function checkGoal(isP) {
     
     setTimeout(() => {
         if (!checkWin()) { 
-            resetPositions(); 
-            gameRunning = true; 
+            resetPositions(); // Devuelve a todos al inicio
             announcer.innerText = ""; 
+            startCountdown(); // Inicia cuenta atrás para reanudar
         }
     }, 2000);
 }
@@ -221,7 +242,8 @@ function draw() {
         ctx.fillStyle = p.color; ctx.beginPath(); ctx.arc(p.x, p.y, 20, 0, Math.PI * 2); ctx.fill();
     });
 
-    if (gameRunning) {
+    // Solo dibujar la flecha si el juego corre o estamos en cuenta atrás (para apuntar)
+    if (gameRunning || isCountdown) {
         ctx.save(); ctx.translate(player.x, player.y); ctx.rotate(player.angle);
         ctx.fillStyle = "yellow"; ctx.beginPath(); ctx.moveTo(35, 0); ctx.lineTo(25, -7); ctx.lineTo(25, 7); ctx.fill();
         ctx.restore();

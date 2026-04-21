@@ -127,6 +127,18 @@ button {
 
 .hidden { display: none !important; }
 
+#announcer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem; /* Aumentado de 3rem a 5rem */
+    color: #fff;
+    text-shadow: 0 0 15px #21ecf3;
+    transition: all 0.2s ease; /* Efecto suave */
+    pointer-events: none;
+}
+
 /* --- RESPONSIVE / ORIENTACIÓN --- */
 
 /* Si el móvil está en VERTICAL */
